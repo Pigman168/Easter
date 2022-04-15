@@ -20,7 +20,9 @@ public class Bunny implements Runnable {
     
 	public static void main(String[] args) throws IOException {
 		Thread bunnyThread = new Thread(new Bunny());
-		bunnyThread.run();
+		Thread eggThread = new Thread(new Egg());
+		bunnyThread.start();
+		eggThread.start();
 	}
     
     Bunny() {
