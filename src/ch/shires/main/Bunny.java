@@ -12,7 +12,7 @@ public class Bunny implements Runnable {
 	static int x = (int)p.getX();
 	static int y = (int)p.getY();
 	
-    static Image img = new ImageIcon("media/bunny.png").getImage();
+    static Image img;
 	
     
 	public static void main(String[] args) throws IOException {
@@ -23,7 +23,7 @@ public class Bunny implements Runnable {
 	}
     
     Bunny() {
-    	
+    	this.img = new ImageIcon(getClass().getClassLoader().getResource("bunny.png")).getImage();
     }
 
 	@Override

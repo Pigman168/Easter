@@ -10,12 +10,17 @@ import java.awt.Window;
 import javax.swing.ImageIcon;
 
 public class Egg implements Runnable {
-  	static Image img = new ImageIcon("media/eggo.png").getImage();
+  	static Image img;
 	
 	
 	static Dimension size = Toolkit.getDefaultToolkit().getScreenSize();
 	static int width = (int)size.getWidth();
 	static int height = (int)size.getHeight();
+	
+	
+	Egg() {
+		this.img = new ImageIcon(getClass().getClassLoader().getResource("eggo.png")).getImage();
+	}
 	
 	@Override
 	public void run() {
