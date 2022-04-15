@@ -6,10 +6,7 @@ import java.io.IOException;
 import javax.swing.ImageIcon;
 
 public class Bunny implements Runnable {
-	
-    static Dimension size = Toolkit.getDefaultToolkit().getScreenSize();
-	static int width = (int)size.getWidth();
-	static int height = (int)size.getHeight();
+
 	
 	static Point p = MouseInfo.getPointerInfo().getLocation();
 	static int x = (int)p.getX();
