@@ -10,7 +10,7 @@ import java.awt.Window;
 import javax.swing.ImageIcon;
 
 public class Egg implements Runnable {
-  	static Image img = new ImageIcon("eggo.png").getImage();
+  	static Image img = new ImageIcon("media/eggo.png").getImage();
 	
 	
 	static Dimension size = Toolkit.getDefaultToolkit().getScreenSize();
