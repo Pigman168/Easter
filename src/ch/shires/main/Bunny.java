@@ -10,10 +10,14 @@ import lc.kra.system.keyboard.event.GlobalKeyAdapter;
 import lc.kra.system.keyboard.event.GlobalKeyEvent;
 
 public class Bunny implements Runnable {
+	
 	GlobalKeyboardHook keyboardHook = new GlobalKeyboardHook(true);
+	
 	static Point p = MouseInfo.getPointerInfo().getLocation();
 	static int x = (int)p.getX();
 	static int y = (int)p.getY();
+	
+	static int eggsScore = 0;
 	
     static Image img;
     
@@ -26,7 +30,7 @@ public class Bunny implements Runnable {
 	}
     
     Bunny() {
-    	this.img = new ImageIcon(getClass().getClassLoader().getResource("bunny.png")).getImage();
+    	Bunny.img = new ImageIcon(getClass().getClassLoader().getResource("bunny.png")).getImage();
 		keyboardHook.addKeyListener(new GlobalKeyAdapter() {
 			@Override 
 			public void keyPressed(GlobalKeyEvent event) {
