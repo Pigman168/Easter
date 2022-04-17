@@ -90,7 +90,8 @@ public class Bunny implements Runnable {
 			    g.setFont(font);
 			    g.setColor(Color.MAGENTA);
 			    final String message = "Score: "+Bunny.eggsScore;
-				g.drawString(message,120,330);
+			    g.drawString(message,120,330);
+				g.drawString("Happy Easter! :)", 0, 500);
 			}
 			@Override
 			public void update(Graphics g)
@@ -99,7 +100,7 @@ public class Bunny implements Runnable {
 			}
 		};
 		w2.setAlwaysOnTop(true);
-		w2.setBounds(200,200,500,500);
+		w2.setBounds(Egg.width*3/8,Egg.height/6,500,10000);
 		w2.setBackground(new Color(0, true));
 		w2.setVisible(true);
 		w2.repaint();
