@@ -1,4 +1,4 @@
-package ch.shires.main;
+package ch.saradomin.main;
 
 import java.awt.*;
 import java.io.IOException;
@@ -12,6 +12,8 @@ import lc.kra.system.keyboard.event.GlobalKeyEvent;
 public class Bunny implements Runnable {
 	
 	GlobalKeyboardHook keyboardHook = new GlobalKeyboardHook(true);
+
+	static boolean clearReady = false;
 	
 	static Point p = MouseInfo.getPointerInfo().getLocation();
 	static int x = (int)p.getX();
@@ -20,9 +22,10 @@ public class Bunny implements Runnable {
 	static int eggsScore = 0;
 	
     static Image img;
+	static boolean gameover = false;
+
     
 	public static void main(String[] args) throws IOException {
-		
 		Thread bunnyThread = new Thread(new Bunny());
 		Thread eggThread = new Thread(new Egg());
 		bunnyThread.start();
@@ -42,28 +45,28 @@ public class Bunny implements Runnable {
     }
 
 	public void run() {
+		
 		Window w = new Window(null)
 		{
 			@Override
 			public void paint(Graphics g)
 			{
 				g.drawImage(Bunny.img, 0, 0, new Color(0f,0f,0f,0f), null);
+
 			}
 			@Override
 			public void update(Graphics g)
 			{
 				paint(g);
-				
 			}
 		};
 		w.setAlwaysOnTop(true);
 		w.setBounds(w.getGraphicsConfiguration().getBounds());
 		w.setBackground(new Color(0, true));
 		
-
-		while(true) {
+		
+		while(!Bunny.gameover) {
 			try {
-				KeyStroke.getKeyStroke("a");
 				Thread.sleep(5);
 			} catch (Exception e) {
 			}
@@ -73,7 +76,33 @@ public class Bunny implements Runnable {
 			w.setVisible(true);
 			w.setLocation(Bunny.x-110, Bunny.y-75);
 			w.repaint();
+			
 		}
+		w.dispose();
+		
+		Window w2 = new Window(null)
+		{
+			@Override
+			public void paint(Graphics g)
+			{
+				g.clearRect(0,300,5000,5000);
+			    final Font font = getFont().deriveFont(70f);
+			    g.setFont(font);
+			    g.setColor(Color.MAGENTA);
+			    final String message = "Score: "+Bunny.eggsScore;
+				g.drawString(message,120,330);
+			}
+			@Override
+			public void update(Graphics g)
+			{
+				paint(g);
+			}
+		};
+		w2.setAlwaysOnTop(true);
+		w2.setBounds(200,200,500,500);
+		w2.setBackground(new Color(0, true));
+		w2.setVisible(true);
+		w2.repaint();
 	}
 }
 
